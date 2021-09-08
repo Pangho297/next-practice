@@ -1,7 +1,7 @@
 // Header라는 이름이 Semantic UI에서 사용되어 이름을 Top이라고 지음
-import { Header } from "semantic-ui-react";
+import { Header } from 'semantic-ui-react';
 
-import Gnb from "./Gnb";
+import Gnb from '../Gnb';
 
 const Top = () => {
   return (
