@@ -1,22 +1,28 @@
 import { Button, Header } from 'semantic-ui-react';
 
+import * as S from './style';
 import { ItemProps } from './type';
 
 const Item = ({ item }: ItemProps) => {
-  const { image_link, name, price, description } = item;
+  const { image_link, name, price, description, category, product_type } = item;
   return (
     <>
-      <div>
-        <img src={image_link} alt={name} />
-      </div>
-      <div>
-        <strong>{name}</strong>
-        <strong>${price}</strong>
-      </div>
-      <Button color="yellow">구매하기</Button>
-      <div>
-        <p>{description}</p>
-      </div>
+      <S.Warpper>
+        <S.ImageBox>
+          <S.Image src={image_link} alt={name} />
+        </S.ImageBox>
+        <S.Info>
+          <S.Title>{name}</S.Title>
+          <S.Price>${price}</S.Price>
+          <S.Category>
+            {category && `${category}/`}
+            {product_type}
+          </S.Category>
+          <Button color="yellow">구매하기</Button>
+        </S.Info>
+      </S.Warpper>
+      <Header as="h3">Description</Header>
+      <S.Description>{description}</S.Description>
     </>
   );
 };
