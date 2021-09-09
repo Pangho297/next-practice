@@ -39,7 +39,8 @@ function MyApp({ Component, pageProps }: AppProps) {
 }
 export default MyApp;
 
-// 페이지 전환 시 레이아웃을 유지할 수 있음
+// 최초 실행되는 파일
+// 페이지 전환 시 레이아웃을 유지할 수 있음 (전체 컴포넌트의 레이아웃)
 // 페이지 전환 시 상태값을 유지할 수 있음
 // componentDidCatch를 이용해 커스텀 에러 핸들링 가능
 // 추가적인 데이터를 페이지로 주입시켜줄수 있음

@@ -41,8 +41,6 @@ class MyDocument extends Document {
 
 export default MyDocument;
 
-//
-
 // _document는 Next.js에서 제공하는 document를 커스텀해서 사용할 수 있게하는 파일이다.
 // Next.js는 Markup 정의를 건너 뛰기 때문에 HTML이나 head, body 태그를 수정해야 할 때 사용한다.
 // _document는 서버에서만 렌더링하며 onClick등의 EventHandler도 사용하지 않는다.
