@@ -1,14 +1,24 @@
-import { Html, Head, Main, NextScript } from 'next/document';
+import Document, { Html, Head, Main, NextScript, DocumentContext } from 'next/document';
 
-const Document = () => {
-  return (
-    <Html lang="ko">
-      <Head>
-        {/* <!-- Global site tag (gtag.js) - Google Analytics --> */}
-        <script async src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`} />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
+class MyDocument extends Document {
+  static async getInitialProps(ctx: DocumentContext) {
+    const initialProps = await Document.getInitialProps(ctx);
+
+    return initialProps;
+  }
+
+  render() {
+    return (
+      <Html lang="ko">
+        <Head>
+          {/* <!-- Global site tag (gtag.js) - Google Analytics --> */}
+          <script
+            async
+            src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
+          />
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
@@ -16,19 +26,22 @@ const Document = () => {
               page_path: window.location.pathname,
             });
           `,
-          }}
-        />
-      </Head>
-      {/* Google Analytics 추적을 위한 스크립트 삽입 */}
-      <body>
-        <Main />
-        <NextScript />
-      </body>
-    </Html>
-  );
-};
+            }}
+          />
+        </Head>
+        {/* Google Analytics 추적을 위한 스크립트 삽입 */}
+        <body>
+          <Main />
+          <NextScript />
+        </body>
+      </Html>
+    );
+  }
+}
 
-export default Document;
+export default MyDocument;
+
+//
 
 // _document는 Next.js에서 제공하는 document를 커스텀해서 사용할 수 있게하는 파일이다.
 // Next.js는 Markup 정의를 건너 뛰기 때문에 HTML이나 head, body 태그를 수정해야 할 때 사용한다.
