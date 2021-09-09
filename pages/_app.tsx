@@ -1,12 +1,34 @@
 import '../styles/globals.css';
 import 'semantic-ui-css/semantic.min.css';
 
+import { useEffect } from 'react';
 import type { AppProps } from 'next/app';
+import { useRouter } from 'next/router';
+import * as gtag from '../utils/gtag';
 
 import Top from '../src/components/Top';
 import Footer from '../src/components/Footer';
 
 function MyApp({ Component, pageProps }: AppProps) {
+  const router = useRouter();
+
+  useEffect(() => {
+    const handleRouteChange = (url: URL) => {
+      gtag.pageview(url);
+    };
+    //When the component is mounted, subscribe to router changes
+    //and log those page views
+    router.events.on('routeChangeComplete', handleRouteChange);
+
+    // If the component is unmounted, unsubscribe
+    // from the event with the `off` method
+    return () => {
+      router.events.off('routeChangeComplete', handleRouteChange);
+    };
+  }, [router.events]);
+
+  // google Analytics를 이용한 페이지 보기 및 이벤트 추적 적용
+
   return (
     <div style={{ width: 1000, margin: '0 auto' }}>
       <Top />
