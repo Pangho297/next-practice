@@ -6,7 +6,7 @@ interface GTagEvent {
 }
 
 export const pageview = (url: URL) => {
-  window.gtag('config', process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS, {
+  window.gtag('config', `${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`, {
     page_path: url,
   });
 };

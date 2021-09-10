@@ -7,15 +7,13 @@ import { Divider, Header, Loader } from 'semantic-ui-react';
 import ItemList from '../src/components/ItemList';
 import { ListType } from '../types/List';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
-
 const Home = () => {
   const [list, setList] = useState<ListType[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
 
   const getData = async () => {
     try {
-      const res = await axios.get(API_URL);
+      const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}`);
       setList(res.data);
       setLoading(false);
     } catch (error) {
