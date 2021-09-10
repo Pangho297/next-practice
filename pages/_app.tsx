@@ -1,7 +1,7 @@
 import '../styles/globals.css';
 import 'semantic-ui-css/semantic.min.css';
 
-import { useEffect } from 'react';
+import { StrictMode, useEffect } from 'react';
 import type { AppProps } from 'next/app';
 import { useRouter } from 'next/router';
 import * as gtag from '../utils/gtag';

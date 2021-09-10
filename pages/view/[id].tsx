@@ -1,11 +1,26 @@
 import axios from 'axios';
 import Head from 'next/head';
-import { GetStaticProps, GetStaticPaths } from 'next';
+import { useRouter } from 'next/router';
+import { GetStaticProps } from 'next';
 
+import { Loader } from 'semantic-ui-react';
 import Item from '../..//src/components/Item';
+import { ListType } from '../../types/List';
 import { ItemProps } from '../../types/Item';
 
 const Post = ({ item, name }: ItemProps) => {
+  const router = useRouter();
+
+  if (router.isFallback) {
+    return (
+      <div style={{ padding: '100px 0' }}>
+        <Loader active inline={'centered'}>
+          Loading
+        </Loader>
+      </div>
+    );
+  }
+
   return (
     <>
       {item && (
@@ -24,9 +39,16 @@ const Post = ({ item, name }: ItemProps) => {
 
 export default Post;
 
-export const getStaticPaths: GetStaticPaths = () => {
+export const getStaticPaths = async () => {
+  const res = await axios.get<ListType[]>(`${process.env.API_URL}`);
+  const data = res.data;
+
   return {
-    paths: [{ params: { id: '495' } }, { params: { id: '488' } }, { params: { id: '477' } }],
+    paths: data.slice(0, 9).map(item => ({
+      params: {
+        id: item.id.toString(),
+      },
+    })),
     fallback: true,
   };
 };
