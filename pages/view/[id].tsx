@@ -8,7 +8,7 @@ import Item from '../..//src/components/Item';
 import { ListType } from '../../types/List';
 import { ItemProps } from '../../types/Item';
 
-const Post = ({ item, name }: ItemProps) => {
+const Post = ({ item }: ItemProps) => {
   const router = useRouter();
 
   if (router.isFallback) {
@@ -29,7 +29,6 @@ const Post = ({ item, name }: ItemProps) => {
             <title>{item.name}</title>
             <meta name="description" content={item.description}></meta>
           </Head>
-          {name} 환경 입니다.
           <Item item={item} />
         </>
       )}
@@ -62,7 +61,6 @@ export const getStaticProps: GetStaticProps = async context => {
   return {
     props: {
       item: data,
-      name: `${process.env.name}`,
     },
   };
 };

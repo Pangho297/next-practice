@@ -11,5 +11,4 @@ export interface ItemType {
 
 export interface ItemProps {
   item: ItemType;
-  name: string;
 }
