@@ -13,6 +13,7 @@ const Post = ({ item, name }: ItemProps) => {
         <title>{item.name}</title>
         <meta name="description" content={item.description}></meta>
       </Head>
+      {name} 환경 입니다.
       {item && <Item item={item} />}
     </>
   );
