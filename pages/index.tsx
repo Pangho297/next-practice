@@ -7,7 +7,7 @@ import { Divider, Header, Loader } from 'semantic-ui-react';
 import ItemList from '../src/components/ItemList';
 import { ListType } from '../types/List';
 
-const API_URL = 'http://makeup-api.herokuapp.com/api/v1/products.json?brand=maybelline';
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 const Home = () => {
   const [list, setList] = useState<ListType[]>([]);

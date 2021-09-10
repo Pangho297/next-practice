@@ -1,15 +1,15 @@
-export const pageview = (url: URL) => {
-  window.gtag('config', process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS, {
-    page_path: url,
-  });
-};
-
 interface GTagEvent {
   action: string;
   category: string;
   label: string;
   value: number;
 }
+
+export const pageview = (url: URL) => {
+  window.gtag('config', process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS, {
+    page_path: url,
+  });
+};
 
 // https://developers.google.com/analytics/devguides/collection/gtagjs/events
 export const event = ({ action, category, label, value }: GTagEvent) => {

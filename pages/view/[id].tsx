@@ -6,7 +6,7 @@ import { GetServerSideProps } from 'next';
 import Item from '../..//src/components/Item';
 import { ItemProps } from './type';
 
-const Post = ({ item }: ItemProps) => {
+const Post = ({ item, name }: ItemProps) => {
   return (
     <>
       <Head>
@@ -22,13 +22,14 @@ export default Post;
 
 export const getServerSideProps: GetServerSideProps = async context => {
   const id = context?.params?.id;
-  const apiUrl = `http://makeup-api.herokuapp.com/api/v1/products/${id}.json`;
-  const res = await axios.get(apiUrl);
+  const API_URL = `http://makeup-api.herokuapp.com/api/v1/products/${id}.json`;
+  const res = await axios.get(API_URL);
   const data = res.data;
 
   return {
     props: {
       item: data,
+      name: process.env.name,
     },
   };
 };
