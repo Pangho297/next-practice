@@ -21,7 +21,7 @@ export interface ListType {
 }
 
 export interface ListResponse {
-  data: ListType[];
+  list: ListType[];
 }
 
 interface Length {

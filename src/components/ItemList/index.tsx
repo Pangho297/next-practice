@@ -4,12 +4,12 @@ import { Grid } from 'semantic-ui-react';
 import { ListResponse } from '../../../types/List';
 import * as S from './style';
 
-const ItemList = ({ data }: ListResponse) => {
+const ItemList = ({ list }: ListResponse) => {
   return (
     <div>
       <Grid columns={3} divided>
         <Grid.Row>
-          {data.map(item => (
+          {list.map(item => (
             <Grid.Column key={item.id}>
               <Link href={`/view/${item.id}`}>
                 <a>

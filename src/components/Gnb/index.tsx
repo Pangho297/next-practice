@@ -4,7 +4,6 @@ import { Menu, MenuItemProps } from 'semantic-ui-react';
 
 const Gnb = () => {
   const router = useRouter();
-  console.log(router);
   let activeItem;
 
   if (router.pathname === '/') {

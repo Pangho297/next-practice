@@ -1,27 +1,37 @@
-import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Head from 'next/head';
-import { GetServerSideProps } from 'next';
+import { GetStaticProps, GetStaticPaths } from 'next';
 
 import Item from '../..//src/components/Item';
-import { ItemProps } from './type';
+import { ItemProps } from '../../types/Item';
 
 const Post = ({ item, name }: ItemProps) => {
   return (
     <>
-      <Head>
-        <title>{item.name}</title>
-        <meta name="description" content={item.description}></meta>
-      </Head>
-      {name} 환경 입니다.
-      {item && <Item item={item} />}
+      {item && (
+        <>
+          <Head>
+            <title>{item.name}</title>
+            <meta name="description" content={item.description}></meta>
+          </Head>
+          {name} 환경 입니다.
+          <Item item={item} />
+        </>
+      )}
     </>
   );
 };
 
 export default Post;
 
-export const getServerSideProps: GetServerSideProps = async context => {
+export const getStaticPaths: GetStaticPaths = () => {
+  return {
+    paths: [{ params: { id: '495' } }, { params: { id: '488' } }, { params: { id: '477' } }],
+    fallback: true,
+  };
+};
+
+export const getStaticProps: GetStaticProps = async context => {
   const id = context?.params?.id;
   const API_URL = `http://makeup-api.herokuapp.com/api/v1/products/${id}.json`;
   const res = await axios.get(API_URL);
@@ -30,7 +40,7 @@ export const getServerSideProps: GetServerSideProps = async context => {
   return {
     props: {
       item: data,
-      name: process.env.name,
+      name: `${process.env.name}`,
     },
   };
 };
