@@ -8,7 +8,7 @@ const Footer = () => {
         textAlign: 'center',
       }}
     >
-      Copyright 😎 Pangho. All rights reserved.
+      Copyright 😎 Pangho. All rights reserved. test
     </div>
   );
 };
